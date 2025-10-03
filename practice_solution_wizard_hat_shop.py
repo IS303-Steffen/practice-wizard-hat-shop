@@ -22,14 +22,14 @@ def average_hat_size(orders_list):
     """
     if len(orders_list) == 0: # return 0 first so we don't try to divide by 0 later on, which causes an error.
         return 0.0
-    total = 0.0
+    total = 0.0 # keep track of the total. Create the tracking variable outside of the loop
     for order in orders_list:
         total += order["size"]
     return total / len(orders_list)
 
 print("Welcome to the Wizard Hat Shop - Order Queue!")
 
-while True:
+while True: # run forever until we choose the exit option.
     print("\nMenu:")
     print("1: Add an order")
     print("2: Fulfill next order")
@@ -41,7 +41,6 @@ while True:
     choice = input("Enter an option (1-6): ").strip()
 
     if choice == "1":
-        # Assume inputs are valid (no try/except required).
         customer = input("Customer name: ").strip()
         size = float(input("Hat size (e.g., 7.25): ").strip())
         enchantment = input("Enchantment (e.g., invisibility, luck, wisdom): ").strip().lower()
@@ -54,11 +53,11 @@ while True:
         if len(orders) == 0:
             print("No pending orders to fulfill.")
         else:
-            next_order = orders.pop(0)  # queue behavior
+            next_order = orders.pop(0)  # get rid of the first thing in the list
             print("Fulfilling order:")
-            print(f"  Customer: {next_order['customer']}")
-            print(f"  Size: {next_order['size']}")
-            print(f"  Enchantment: {next_order['enchantment']}")
+            print(f"\tCustomer: {next_order['customer']}")
+            print(f"\tSize: {next_order['size']}")
+            print(f"\tEnchantment: {next_order['enchantment']}")
 
     elif choice == "3":
         if len(orders) == 0:
